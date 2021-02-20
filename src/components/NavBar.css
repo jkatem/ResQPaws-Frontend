@@ -1,0 +1,25 @@
+.navbar {
+    height: 40px;
+    width: 100%;
+    background-color:darkgray;
+    display: block;
+    justify-content: center;
+    padding: 1rem;
+  }
+  
+  .NavBar nav {
+    height: 100%
+  }
+
+  .NavigationItem {
+    margin: 10px 0;
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+  }
+
+  @media (max-width: 499px) {
+    .DesktopOnly {
+        display: none;
+    }
+}
