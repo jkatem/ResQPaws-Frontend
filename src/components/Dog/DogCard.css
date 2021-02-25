@@ -1,10 +1,22 @@
 .dog-card {
-    text-align: center;
+    /* text-align: center; */
     border: grey solid 1px;
     padding: 1rem;
     width: 15rem;
-    height: 25rem;
+    height: auto;
     display: inline-grid;
     margin: 1rem 2rem;
-    box-shadow: 3px 4px #e04b52
-  }
+    /* background-color:lightcoral */
+}
+
+.dog-card h5 {
+    color:rgb(255, 0, 191);
+}
+
+.dog-avatar {
+    justify-self: center;
+    height: 10rem;
+    width: auto;
+    padding-top: 10px;
+}
+
