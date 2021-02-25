@@ -1,11 +1,9 @@
-
-
-    
-
 const getDogsReducer = (state={dogs: []}, action) => {
     switch(action.type) {
         case 'GET_DOGS':
-            return console.log(state)
+            return {
+                dogs: action.payload
+            }
         default:
             return state 
     }

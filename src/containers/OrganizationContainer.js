@@ -5,8 +5,7 @@ import { getOrganizations } from '../actions/getOrganizations'
 
 class OrganizationContainer extends Component {
 
-    componentDidMount() {
-        
+    componentDidMount() {        
         this.props.getOrganizations();
     }
 

@@ -2,10 +2,8 @@ export default function getOrganizationsReducer(state={organizations: []}, actio
     // debugger
     switch(action.type) {
         case 'GET_ORGANIZATIONS':
-            return {
-                
+            return {                
                 organizations: action.payload}    
-        
         default:
             return state
     }
