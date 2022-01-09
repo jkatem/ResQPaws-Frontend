@@ -4,66 +4,71 @@ import { Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import OrganizationContainer from './containers/OrganizationContainer';
 import DogContainer from './containers/DogContainer';
-import {getDogs} from './actions/getDogs'
+import { getDogs } from './actions/getDogs'
+// import { getUser } from './actions/user/userActions'
 import About from './components/About'
 import DogCard from './components/Dog/DogCard'
-import SearchBar from './components/SearchBar'
-// import Images from './components/Dog/Images'
-// import Photo from './components/Photo'
-// import {Cloudinary} from 'cloudinary-react';
-// import {Image} from 'cloudinary-react';
-// import PhotoListContainer
+import HomePage from './containers/HomePage';
+import Donation from './components/Donation'
+import CartContainer from './containers/CartContainer'
+// import LoginForm from './components/LoginForm';
+// import UserProfile from './components/UserProfile';
+// import SignUp from './components/user/SignUp'
+// import Logout from './components/Logout';
+
 
 class App extends Component {
 
-  // componentDidMount() {
-  //   fetch('http://localhost:3000/api/v1/organizations/1') //this request takes some time. It is asynchronous, meaning we won't do anything until we have a response
-  //   .then(resp => resp.json())
-  //   .then(organizations => console.log(organizations))
-  // }
+  
   componentDidMount(){
     this.props.getDogs();
+    // this.props.getUser();
   }
 
+
   render() {
-    // (console.log(this.props))
 
     return (
       <>
         <div> 
           <NavBar />
-          <SearchBar />
-        </div>        
+        </div> 
+           
         <Switch>
-          <Route path='/api/v1/about' component={About}></Route>
-          <Route path='/api/v1/organizations' component={OrganizationContainer}></Route>
-      
+          <Route exact path='/' component={HomePage} />
+          <Route path='/about' component={About}/>
+ 
+          <Route path='/organizations' component={OrganizationContainer}></Route>
           
-          <Route path='/api/v1/dogs/:id' render={(routerProps) => {
-                console.log(routerProps)
-                const dogId = parseInt(routerProps.match.params.id)
-                //  console.log(this.props)
-                // debugger
-                const dogObj = this.props.dogs.find(dog => dog.id === dogId)
+          <Route path='/dogs'>
+            <DogContainer id='dog-container' dogs={this.props.dogs} />
+          </Route>
 
+          {/* <Route path='/dogs/:id' render={(props) => console.log(props)}/> */}
+          
+          {/* <Route exact path='/dogs/:id' render={(routerProps) => {
+            console.log(routerProps)
+                const dogId = parseInt(routerProps.match.params.id)
+                const dogObj = this.props.dogs.find(dog => dog.id === dogId)
                 if (dogObj) {
                   return (
                   <DogCard  
                             key={dogObj.id}
                             dog={dogObj}
-                            // id={dogObj.id}
-                            // name={dogObj.name}
-                            // img={dogObj.img}
                   />
                 )} 
                   else {
                     return <div>Loading... </div>
                   }
             }} 
-          ></Route>
-          <Route path='/api/v1/dogs'>
-            <DogContainer id='dog-container' dogs={this.props.dogs} />
-          </Route>
+          ></Route> 
+           */}
+          <Route path='/donate' render={(routerProps) => <Donation {...routerProps} />}/>
+            {/* <Donation />
+          </Route> */}
+          {/* <Route path='/donate' component={Donation}></Route>  */}
+          <Route path='/cart' component={CartContainer}/>             
+          
         </Switch>
       </>
     )
@@ -72,8 +77,16 @@ class App extends Component {
 
 const mSTP = (state) => {
   return ({
-    dogs: state.getDogsReducer.dogs
+    dogs: state.getDogsReducer.dogs,
   })
 } 
 
 export default connect(mSTP, {getDogs})(App);
+
+/*
+       <Route path='/api/v1/donate' render={(routerProps => 
+            <Donation 
+              {...routerProps} 
+              donation={this.state.donationAmt}/>
+          )}/>
+*/
