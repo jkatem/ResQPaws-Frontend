@@ -19,6 +19,13 @@ import CartContainer from './containers/CartContainer'
 
 class App extends Component {
 
+  // constructor(props) {
+  //   super(props);
+
+  //   this.state = {
+  //     id : this.props.match.params.id
+  //   }
+  // }
   
   componentDidMount(){
     this.props.getDogs();
@@ -40,15 +47,14 @@ class App extends Component {
  
           <Route path='/organizations' component={OrganizationContainer}></Route>
           
-          <Route path='/dogs'>
+          <Route exact path='/dogs'>
             <DogContainer id='dog-container' dogs={this.props.dogs} />
           </Route>
-
-          {/* <Route path='/dogs/:id' render={(props) => console.log(props)}/> */}
           
-          {/* <Route exact path='/dogs/:id' render={(routerProps) => {
+          <Route path='/dogs/:id' render={(routerProps) => {
             console.log(routerProps)
                 const dogId = parseInt(routerProps.match.params.id)
+                console.log(dogId)
                 const dogObj = this.props.dogs.find(dog => dog.id === dogId)
                 if (dogObj) {
                   return (
@@ -62,7 +68,7 @@ class App extends Component {
                   }
             }} 
           ></Route> 
-           */}
+          
           <Route path='/donate' render={(routerProps) => <Donation {...routerProps} />}/>
             {/* <Donation />
           </Route> */}
